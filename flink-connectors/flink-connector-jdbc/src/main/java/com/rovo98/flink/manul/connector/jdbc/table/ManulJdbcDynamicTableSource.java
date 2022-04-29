@@ -37,6 +37,7 @@ import org.apache.flink.table.utils.TableSchemaUtils;
 import org.apache.flink.util.Preconditions;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /** A {@link DynamicTableSource} for JDBC. */
 public class ManulJdbcDynamicTableSource
@@ -103,6 +104,15 @@ public class ManulJdbcDynamicTableSource
         String query =
                 dialect.getSelectFromStatement(
                         options.getTableName(), physicalSchema.getFieldNames(), new String[0]);
+        Optional<String> whereClausePushDownConstraints = Optional.empty();
+        if (readOptions.getWhereClausePushDownConstraints().isPresent()) {
+            whereClausePushDownConstraints =
+                    Optional.of(
+                            new WhereClauseIdentifierConverter(
+                                            readOptions.getWhereClausePushDownConstraints().get(),
+                                            dialect)
+                                    .convert());
+        }
         if (readOptions.getPartitionColumnName().isPresent()) {
             if (readOptions.getPartitionColumnStringType()) {
                 String partitionColumnValues = readOptions.getStringPartitionColumnValues().get();
@@ -126,16 +136,12 @@ public class ManulJdbcDynamicTableSource
                                         readOptions.getPartitionColumnName().get())
                                 + " BETWEEN ? AND ?";
             }
+            if (whereClausePushDownConstraints.isPresent()) {
+                query += " AND " + whereClausePushDownConstraints.get();
+            }
         } else {
-            if (readOptions.getWhereClausePushDownConstraints().isPresent()) {
-                query +=
-                        " WHERE "
-                                + new WhereClauseIdentifierConverter(
-                                                readOptions
-                                                        .getWhereClausePushDownConstraints()
-                                                        .get(),
-                                                dialect)
-                                        .convert();
+            if (whereClausePushDownConstraints.isPresent()) {
+                query += " WHERE " + whereClausePushDownConstraints.get();
             }
         }
         if (limit >= 0) {
