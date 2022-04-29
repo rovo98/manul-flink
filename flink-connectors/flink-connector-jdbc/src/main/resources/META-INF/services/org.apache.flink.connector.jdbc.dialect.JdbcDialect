@@ -1,0 +1,4 @@
+com.rovo98.flink.manul.connector.jdbc.dialect.DerbyDialect
+com.rovo98.flink.manul.connector.jdbc.dialect.MySQLDialect
+com.rovo98.flink.manul.connector.jdbc.dialect.PostgresDialect
+com.rovo98.flink.manul.connector.jdbc.dialect.OracleDialect
