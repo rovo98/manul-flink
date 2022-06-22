@@ -2,7 +2,13 @@ package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.internal.options.ManulJdbcConnectionOptions;
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
-import org.apache.flink.api.connector.source.*;
+
+import org.apache.flink.api.connector.source.Boundedness;
+import org.apache.flink.api.connector.source.Source;
+import org.apache.flink.api.connector.source.SourceReader;
+import org.apache.flink.api.connector.source.SourceReaderContext;
+import org.apache.flink.api.connector.source.SplitEnumerator;
+import org.apache.flink.api.connector.source.SplitEnumeratorContext;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.connector.base.source.reader.SourceReaderOptions;
 import org.apache.flink.connector.base.source.reader.synchronization.FutureCompletingBlockingQueue;
@@ -77,7 +83,7 @@ public class JdbcSource<T> implements Source<T, JdbcSourceSplit, Collection<Jdbc
                 splits.add(new JdbcSourceSplit(query, "" + i));
             }
         }
-        return new JdbcSplitEnumerator(
+        return new JdbcSourceSplitEnumerator(
                 splitEnumeratorContext, splits, getBoundedness() == Boundedness.BOUNDED);
     }
 
@@ -86,7 +92,7 @@ public class JdbcSource<T> implements Source<T, JdbcSourceSplit, Collection<Jdbc
             SplitEnumeratorContext<JdbcSourceSplit> splitEnumeratorContext,
             Collection<JdbcSourceSplit> checkpoint)
             throws Exception {
-        return new JdbcSplitEnumerator(
+        return new JdbcSourceSplitEnumerator(
                 splitEnumeratorContext, checkpoint, getBoundedness() == Boundedness.BOUNDED);
     }
 

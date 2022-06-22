@@ -29,9 +29,7 @@ import org.apache.flink.table.types.logical.VarBinaryType;
 
 import java.util.List;
 
-/**
- * Migrated from flink to make the APIs public.
- */
+/** Migrated from flink to make the APIs public. */
 public abstract class AbstractDialect implements JdbcDialect {
 
     @Override
@@ -46,8 +44,8 @@ public abstract class AbstractDialect implements JdbcDialect {
             //  when n is smaller than Integer.MAX_VALUE
             if (unsupportedTypes().contains(dt.getLogicalType().getTypeRoot())
                     || (dt.getLogicalType() instanceof VarBinaryType
-                    && Integer.MAX_VALUE
-                    != ((VarBinaryType) dt.getLogicalType()).getLength())) {
+                            && Integer.MAX_VALUE
+                                    != ((VarBinaryType) dt.getLogicalType()).getLength())) {
                 throw new ValidationException(
                         String.format(
                                 "The %s dialect doesn't support type: %s.",

@@ -3,6 +3,7 @@ package com.rovo98.flink.manul.connector.jdbc;
 import org.apache.flink.connector.jdbc.JdbcConnectionOptions;
 
 import javax.sql.XADataSource;
+
 import java.io.Serializable;
 
 /** Describes a database: driver, schema and urls. */

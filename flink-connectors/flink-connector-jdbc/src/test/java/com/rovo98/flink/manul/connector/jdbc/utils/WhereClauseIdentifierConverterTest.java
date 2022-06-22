@@ -1,11 +1,14 @@
 package com.rovo98.flink.manul.connector.jdbc.utils;
 
 import com.rovo98.flink.manul.connector.jdbc.dialect.MySQLDialect;
+
 import org.apache.flink.connector.jdbc.dialect.JdbcDialect;
-import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.Test;
+
+/** WhereClauseIdentifierConverterTest. */
 public class WhereClauseIdentifierConverterTest {
 
     @Test

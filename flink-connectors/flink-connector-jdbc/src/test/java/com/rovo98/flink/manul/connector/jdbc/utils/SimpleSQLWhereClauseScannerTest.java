@@ -1,13 +1,16 @@
 package com.rovo98.flink.manul.connector.jdbc.utils;
 
-import org.junit.Test;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.Test;
+
+/** SimpleSQLWhereClauseScannerTest. */
 public class SimpleSQLWhereClauseScannerTest {
 
     @Test

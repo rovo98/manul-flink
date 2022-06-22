@@ -2,6 +2,7 @@ package com.rovo98.flink.manul.connector.jdbc.table;
 
 import com.rovo98.flink.manul.connector.jdbc.dialect.JdbcDialectService;
 import com.rovo98.flink.manul.connector.jdbc.internal.options.ManulJdbcReadOptions;
+
 import org.apache.flink.connector.jdbc.internal.options.JdbcConnectorOptions;
 import org.apache.flink.connector.jdbc.internal.options.JdbcLookupOptions;
 import org.apache.flink.table.api.DataTypes;
@@ -10,7 +11,6 @@ import org.apache.flink.table.catalog.Column;
 import org.apache.flink.table.catalog.ResolvedSchema;
 import org.apache.flink.table.catalog.UniqueConstraint;
 import org.apache.flink.table.connector.source.DynamicTableSource;
-import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,6 +19,8 @@ import java.util.Map;
 
 import static com.rovo98.flink.manul.connector.jdbc.factories.utils.FactoryMocks.createTableSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.Test;
 
 /** Test for {@link ManulJdbcDynamicTableFactory} Adopted from flink. */
 public class ManulJdbcDynamicTableFactoryTest {
@@ -64,8 +66,7 @@ public class ManulJdbcDynamicTableFactoryTest {
                         options,
                         ManulJdbcReadOptions.builder().build(),
                         lookupOptions,
-                        TableSchema.fromResolvedSchema(SCHEMA)
-                );
+                        TableSchema.fromResolvedSchema(SCHEMA));
         assertEquals(expectedSource, actualSource);
     }
 

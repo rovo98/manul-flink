@@ -2,19 +2,27 @@ package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.internal.options.ManulJdbcConnectionOptions;
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
+
 import org.apache.flink.connector.base.source.reader.RecordsWithSplitIds;
 import org.apache.flink.connector.base.source.reader.splitreader.SplitReader;
 import org.apache.flink.connector.base.source.reader.splitreader.SplitsAddition;
 import org.apache.flink.connector.base.source.reader.splitreader.SplitsChange;
 import org.apache.flink.connector.jdbc.split.JdbcParameterValuesProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.Queue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Jdbc split reader used to read records from the given {@link JdbcSourceSplit}.
+ *
+ * @param <T> the final type of the record to emit
+ * @param <SplitT> the type of the split
+ */
 public class JdbcSourceSplitReader<T, SplitT extends JdbcSourceSplit>
         implements SplitReader<T, SplitT> {
 

@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * This query parameters generator is an helper class to parameterize from/to queries on a string
+ * This query parameters generator is a helper class to parameterize from/to queries on a string
  * column.
  *
- * <p>For example, if there's a table <CODE>BOOKS</CODE> with a string column <CODE>name</CODE>, using a
- * query like:
+ * <p>For example, if there's a table <CODE>BOOKS</CODE> with a string column <CODE>name</CODE>,
+ * using a query like:
  *
  * <PRE>
  * SELECT * FROM BOOKS WHERE name = ?
@@ -25,16 +25,18 @@ public class JdbcStringParameterValuesProvider implements JdbcParameterValuesPro
     private final List<String> columnValues;
 
     public JdbcStringParameterValuesProvider(String columnValuesString) {
-        Preconditions.checkNotNull(columnValuesString, "A comma separated values string must be given!");
+        Preconditions.checkNotNull(
+                columnValuesString, "A comma separated values string must be given!");
         columnValues = extractValuesFromCommaSeparatedString(columnValuesString);
-        Preconditions.checkArgument(!columnValues.isEmpty(), "Extracted column values list is empty! " +
-                "given value string: " + columnValuesString);
+        Preconditions.checkArgument(
+                !columnValues.isEmpty(),
+                "Extracted column values list is empty! "
+                        + "given value string: "
+                        + columnValuesString);
     }
 
     private List<String> extractValuesFromCommaSeparatedString(String s) {
-        return Arrays.stream(s.split(","))
-                .map(String::trim)
-                .collect(Collectors.toList());
+        return Arrays.stream(s.split(",")).map(String::trim).collect(Collectors.toList());
     }
 
     @Override
@@ -43,7 +45,7 @@ public class JdbcStringParameterValuesProvider implements JdbcParameterValuesPro
 
         Serializable[][] parameters = new Serializable[batchNum][1];
         for (int i = 0; i < columnValues.size(); i++) {
-            parameters[i] = new String[]{columnValues.get(i)};
+            parameters[i] = new String[] {columnValues.get(i)};
         }
         return parameters;
     }

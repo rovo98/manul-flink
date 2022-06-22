@@ -1,5 +1,3 @@
-
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -30,10 +28,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- *  JDBC dialect for MySQL.
- *  Migrated from flink to make MySQLDialect public.
- **/
+/** JDBC dialect for MySQL. Migrated from flink to make MySQLDialect public. */
 public class MySQLDialect extends AbstractDialect {
 
     private static final long serialVersionUID = 1L;

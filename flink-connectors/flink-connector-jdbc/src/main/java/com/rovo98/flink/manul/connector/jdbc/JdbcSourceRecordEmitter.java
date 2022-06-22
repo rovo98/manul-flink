@@ -1,6 +1,7 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
+
 import org.apache.flink.api.connector.source.SourceOutput;
 import org.apache.flink.connector.base.source.reader.RecordEmitter;
 

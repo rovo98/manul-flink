@@ -1,8 +1,6 @@
 package com.rovo98.flink.manul.connector.jdbc.dialect;
 
 import org.apache.flink.connector.jdbc.dialect.JdbcDialect;
-import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -10,6 +8,10 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+
+/** JdbcDialectServiceTest. */
 public class JdbcDialectServiceTest {
 
     @Test
@@ -34,28 +36,29 @@ public class JdbcDialectServiceTest {
     @DisplayName("Test loading not existed Jdbc Dialect")
     public void testLoadNotExistedJdbcDialect() {
         String url = "jdbc:noexisted://example_host:9870/example_db";
-        Exception exception = assertThrows(
-                IllegalStateException.class,
-                () -> JdbcDialectService.load(url));
+        Exception exception =
+                assertThrows(IllegalStateException.class, () -> JdbcDialectService.load(url));
 
-        Class<?>[] builtinDialects = new Class[] {
-                DerbyDialect.class,
-                MySQLDialect.class,
-                PostgresDialect.class,
-                OracleDialect.class
-        };
+        Class<?>[] builtinDialects =
+                new Class[] {
+                    DerbyDialect.class,
+                    MySQLDialect.class,
+                    PostgresDialect.class,
+                    OracleDialect.class
+                };
 
-        String expectedExceptionMsg = String.format(
-                "Could not find any jdbc dialects that can handle url '%s' that implements '%s' in the classpath.\n\n"
-                        + "Available dialects are:\n\n"
-                        + "%s",
-                url,
-                JdbcDialect.class.getName(),
-                Arrays.stream(builtinDialects)
-                        .map(Class::getName)
-                        .distinct()
-                        .sorted()
-                        .collect(Collectors.joining("\n")));
+        String expectedExceptionMsg =
+                String.format(
+                        "Could not find any jdbc dialects that can handle url '%s' that implements '%s' in the classpath.\n\n"
+                                + "Available dialects are:\n\n"
+                                + "%s",
+                        url,
+                        JdbcDialect.class.getName(),
+                        Arrays.stream(builtinDialects)
+                                .map(Class::getName)
+                                .distinct()
+                                .sorted()
+                                .collect(Collectors.joining("\n")));
 
         assertEquals(expectedExceptionMsg, exception.getMessage());
     }

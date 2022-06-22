@@ -1,14 +1,17 @@
 package com.rovo98.flink.manul.connector.jdbc.internal;
 
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcStringParameterValuesProvider;
+
 import org.apache.flink.connector.jdbc.split.JdbcParameterValuesProvider;
-import org.junit.Test;
 
 import java.io.Serializable;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.Test;
+
+/** JdbcStringParameterValuesProviderTest. */
 public class JdbcStringParameterValuesProviderTest {
 
     @Test
@@ -33,5 +36,5 @@ public class JdbcStringParameterValuesProviderTest {
                         assertEquals(expected[i][0], actual[i][0]);
                     }
                 });
-        }
     }
+}

@@ -9,7 +9,7 @@ import java.util.function.Function;
  *
  * @param <T> type of the input type
  * @param <R> type of the return type
- * @param <E> type of the exception which can thrown
+ * @param <E> type of the exception which can be thrown
  */
 @FunctionalInterface
 public interface FunctionWithException<T, R, E extends Throwable> {
@@ -23,7 +23,8 @@ public interface FunctionWithException<T, R, E extends Throwable> {
     R apply(T t) throws E;
 
     /**
-     * Convert a {@link FunctionWithException} into a {@link Function}
+     * Convert a {@link FunctionWithException} into a {@link Function}.
+     *
      * @param functionWithException function with exception to convert into a function
      * @param <A> input type
      * @param <B> output type

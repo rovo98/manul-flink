@@ -28,10 +28,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * JDBC dialect for PostgreSQL.
- * Migrated from flink to make PostgresDialect public.
- * */
+/** JDBC dialect for PostgreSQL. Migrated from flink to make PostgresDialect public. */
 public class PostgresDialect extends AbstractDialect {
 
     private static final long serialVersionUID = 1L;

@@ -1,9 +1,10 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
-import org.apache.derby.jdbc.EmbeddedXADataSource;
-
 import javax.sql.XADataSource;
 
+import org.apache.derby.jdbc.EmbeddedXADataSource;
+
+/** DerbyDbMetadata. */
 public class DerbyDbMetadata implements DbMetadata {
     private final String dbName;
     private final String dbInitUrl;

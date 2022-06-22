@@ -1,7 +1,6 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -10,6 +9,9 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.Test;
+
+/** JdbcEnumeratorCheckpointSerializerTest. */
 public class JdbcEnumeratorCheckpointSerializerTest {
 
     @Test

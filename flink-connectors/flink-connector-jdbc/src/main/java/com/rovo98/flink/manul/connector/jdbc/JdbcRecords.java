@@ -3,10 +3,16 @@ package com.rovo98.flink.manul.connector.jdbc;
 import org.apache.flink.connector.base.source.reader.RecordsWithSplitIds;
 
 import javax.annotation.Nullable;
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * Payload for the elements passed from fetchers to {@link JdbcSourceSplitReader}.
+ *
+ * @param <T> the type of the record
+ */
 public final class JdbcRecords<T> implements RecordsWithSplitIds<T> {
     @Nullable private String splitId;
 

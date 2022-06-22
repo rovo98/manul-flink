@@ -1,6 +1,5 @@
 package com.rovo98.flink.manul.connector.jdbc.dialect;
 
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -28,9 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Migrated from flink to make DerbyDialect public.
- */
+/** Migrated from flink to make DerbyDialect public. */
 public class DerbyDialect extends AbstractDialect {
 
     private static final long serialVersionUID = 1L;

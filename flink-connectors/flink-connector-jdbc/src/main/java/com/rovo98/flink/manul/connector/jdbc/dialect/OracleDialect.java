@@ -19,14 +19,18 @@
 package com.rovo98.flink.manul.connector.jdbc.dialect;
 
 import com.rovo98.flink.manul.connector.jdbc.internal.converter.OracleRowConverter;
+
 import org.apache.flink.connector.jdbc.internal.converter.JdbcRowConverter;
 import org.apache.flink.table.types.logical.LogicalTypeRoot;
 import org.apache.flink.table.types.logical.RowType;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-/** Migrated from flink 1.15 */
+/** Oracle Dialect. */
 public class OracleDialect extends AbstractDialect {
     private static final long serialVersionUID = 1L;
 

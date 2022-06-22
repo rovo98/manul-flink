@@ -1,6 +1,7 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
+
 import org.apache.flink.connector.base.source.reader.RecordsWithSplitIds;
 import org.apache.flink.connector.base.source.reader.fetcher.SplitFetcherManager;
 import org.apache.flink.connector.base.source.reader.splitreader.SplitReader;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+/** SplitFetcherManger with Fixed number of fetchers. */
 public class FixedSizeJdbcSourceSplitFetcherManager<T>
         extends SplitFetcherManager<T, JdbcSourceSplit> {
     private final int numOfFetchers;

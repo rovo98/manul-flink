@@ -112,28 +112,31 @@ public class ManulJdbcConnectorOptions {
 
     public static final ConfigOption<Boolean> SCAN_PARTITION_COLUMN_STRING_TYPE =
             ConfigOptions.key("scan.partition.string-type")
-            .booleanType()
-            .defaultValue(false)
-            .withDeprecatedKeys(
-                    "Sets whether the type of the partition column is string or not.");
+                    .booleanType()
+                    .defaultValue(false)
+                    .withDeprecatedKeys(
+                            "Sets whether the type of the partition column is string or not.");
 
     // NOTICE::
-    // Please make sure that this option is used for partition case that the num of the target string
+    // Please make sure that this option is used for partition case that the num of the target
+    // string
     // partition column values is much smaller than the overall records.
     // The num of the partitions will be the num of the column values
     // IMPORTANT:: This option should not be used when given string column has too many values.
     public static final ConfigOption<String> SCAN_PARTITION_STRING_COLUMN_VALUES =
             ConfigOptions.key("scan.partition.string-column-values")
-            .stringType()
-            .noDefaultValue()
-            .withDescription("The comma separated values string for the partition column. This option works only when"
-            + " the scan.partition.string-type is set to `true`.");
+                    .stringType()
+                    .noDefaultValue()
+                    .withDescription(
+                            "The comma separated values string for the partition column. This option works only when"
+                                    + " the scan.partition.string-type is set to `true`.");
 
     public static final ConfigOption<String> SCAN_PUSH_DOWN_CONSTRAINTS =
             ConfigOptions.key("scan.query.push-down-constraints")
-            .stringType()
-            .noDefaultValue()
-            .withDescription("The predicates (where clause supported currently) to push down to the database.");
+                    .stringType()
+                    .noDefaultValue()
+                    .withDescription(
+                            "The predicates (where clause supported currently) to push down to the database.");
 
     // -----------------------------------------------------------------------------------------
     // Lookup options

@@ -5,6 +5,7 @@ import org.apache.flink.util.Preconditions;
 
 import java.util.List;
 
+/** This converter mainly used to convert where clause sql strings into tokens. */
 public class WhereClauseIdentifierConverter {
 
     private final SimpleSQLWhereClauseScanner tokenizer;

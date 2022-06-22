@@ -14,9 +14,7 @@ import java.util.Objects;
 
 import static org.apache.flink.table.types.utils.TypeConversions.fromLegacyInfoToDataType;
 
-/**
- * Test data and helper objects for JDBC tests.
- */
+/** Test data and helper objects for JDBC tests. */
 public class JdbcTestFixture {
     public static final JdbcTestCheckpoint CP0 = new JdbcTestCheckpoint(0, 1, 2, 3);
     public static final JdbcTestCheckpoint CP1 = new JdbcTestCheckpoint(1, 4, 5, 6);
@@ -43,16 +41,16 @@ public class JdbcTestFixture {
             SELECT_ALL_BOOKS + " WHERE author = ?";
 
     public static final TestEntry[] TEST_DATA = {
-            new TestEntry(1001, ("Java public for dummies"), ("Tan Ah Teck"), 11.11, 11),
-            new TestEntry(1002, ("More Java for dummies"), ("Tan Ah Teck"), 22.22, 22),
-            new TestEntry(1003, ("More Java for more dummies"), ("Mohammad Ali"), 33.33, 33),
-            new TestEntry(1004, ("A Cup of Java"), ("Kumar"), 44.44, 44),
-            new TestEntry(1005, ("A Teaspoon of Java"), ("Kevin Jones"), 55.55, 55),
-            new TestEntry(1006, ("A Teaspoon of Java 1.4"), ("Kevin Jones"), 66.66, 66),
-            new TestEntry(1007, ("A Teaspoon of Java 1.5"), ("Kevin Jones"), 77.77, 77),
-            new TestEntry(1008, ("A Teaspoon of Java 1.6"), ("Kevin Jones"), 88.88, 88),
-            new TestEntry(1009, ("A Teaspoon of Java 1.7"), ("Kevin Jones"), 99.99, 99),
-            new TestEntry(1010, ("A Teaspoon of Java 1.8"), ("Kevin Jones"), null, 1010)
+        new TestEntry(1001, ("Java public for dummies"), ("Tan Ah Teck"), 11.11, 11),
+        new TestEntry(1002, ("More Java for dummies"), ("Tan Ah Teck"), 22.22, 22),
+        new TestEntry(1003, ("More Java for more dummies"), ("Mohammad Ali"), 33.33, 33),
+        new TestEntry(1004, ("A Cup of Java"), ("Kumar"), 44.44, 44),
+        new TestEntry(1005, ("A Teaspoon of Java"), ("Kevin Jones"), 55.55, 55),
+        new TestEntry(1006, ("A Teaspoon of Java 1.4"), ("Kevin Jones"), 66.66, 66),
+        new TestEntry(1007, ("A Teaspoon of Java 1.5"), ("Kevin Jones"), 77.77, 77),
+        new TestEntry(1008, ("A Teaspoon of Java 1.6"), ("Kevin Jones"), 88.88, 88),
+        new TestEntry(1009, ("A Teaspoon of Java 1.7"), ("Kevin Jones"), 99.99, 99),
+        new TestEntry(1010, ("A Teaspoon of Java 1.8"), ("Kevin Jones"), null, 1010)
     };
 
     private static final String EBOOKSHOP_SCHEMA_NAME = "ebookshop";
@@ -174,8 +172,8 @@ public class JdbcTestFixture {
                 "derby.stream.error.field", JdbcTestFixture.class.getCanonicalName() + ".DEV_NULL");
         Class.forName(dbMetadata.getDriverClass());
         try (Connection conn =
-                     DriverManager.getConnection(
-                             dbMetadata.getInitUrl(), dbMetadata.getUser(), dbMetadata.getPassword())) {
+                DriverManager.getConnection(
+                        dbMetadata.getInitUrl(), dbMetadata.getUser(), dbMetadata.getPassword())) {
             createTable(conn, JdbcTestFixture.INPUT_TABLE);
             createTable(conn, OUTPUT_TABLE);
             createTable(conn, OUTPUT_TABLE_2);
@@ -218,7 +216,7 @@ public class JdbcTestFixture {
             throws ClassNotFoundException, SQLException {
         Class.forName(dbMetadata.getDriverClass());
         try (Connection conn = DriverManager.getConnection(dbMetadata.getUrl());
-             Statement stat = conn.createStatement()) {
+                Statement stat = conn.createStatement()) {
 
             stat.executeUpdate("DROP TABLE " + INPUT_TABLE);
             stat.executeUpdate("DROP TABLE " + OUTPUT_TABLE);

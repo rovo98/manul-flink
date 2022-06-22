@@ -4,6 +4,7 @@ import org.apache.flink.connector.jdbc.JdbcConnectionOptions;
 
 import javax.annotation.Nullable;
 
+/** Modification of {@link JdbcConnectionOptions}. */
 public class ManulJdbcConnectionOptions extends JdbcConnectionOptions {
     private static final long serialVersionUID = 1L;
 
@@ -31,12 +32,12 @@ public class ManulJdbcConnectionOptions extends JdbcConnectionOptions {
         return autoCommit;
     }
 
-    /** Returns a builder for ManulJdbcConnectionOptions */
+    /** Returns a builder for ManulJdbcConnectionOptions. */
     public static ManulJdbcConnectionOptionsBuilder builder() {
         return new ManulJdbcConnectionOptionsBuilder();
     }
 
-    /** Builder for {@link ManulJdbcConnectionOptions} */
+    /** Builder for {@link ManulJdbcConnectionOptions}. */
     public static class ManulJdbcConnectionOptionsBuilder {
         private String url;
         private String driverName;

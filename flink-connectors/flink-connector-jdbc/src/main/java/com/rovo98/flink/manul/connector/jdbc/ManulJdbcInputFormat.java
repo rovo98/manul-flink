@@ -3,16 +3,29 @@ package com.rovo98.flink.manul.connector.jdbc;
 import org.apache.flink.connector.jdbc.JdbcConnectionOptions;
 import org.apache.flink.connector.jdbc.internal.connection.JdbcConnectionProvider;
 import org.apache.flink.connector.jdbc.internal.connection.SimpleJdbcConnectionProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.*;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * A modification of {@link org.apache.flink.connector.jdbc.JdbcInputFormat}.
+ *
+ * @param <T> the type of the record to emit
+ */
 public class ManulJdbcInputFormat<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final Logger LOG = LoggerFactory.getLogger(ManulJdbcInputFormat.class);
@@ -72,7 +85,6 @@ public class ManulJdbcInputFormat<T> implements Serializable {
             throw new IllegalArgumentException(
                     "JDBC-Class not found. - " + cnfe.getMessage(), cnfe);
         }
-
     }
 
     public void setParameterValueAndExecute() {
@@ -120,7 +132,8 @@ public class ManulJdbcInputFormat<T> implements Serializable {
             resultSet = statement.executeQuery();
             hasNext = resultSet.next();
         } catch (SQLException se) {
-            throw new IllegalArgumentException("setParameterValuesAndExecute()() failed." + se.getMessage(), se);
+            throw new IllegalArgumentException(
+                    "setParameterValuesAndExecute()() failed." + se.getMessage(), se);
         }
     }
 
@@ -179,6 +192,7 @@ public class ManulJdbcInputFormat<T> implements Serializable {
         return new Builder<>();
     }
 
+    /** Returns a builder for {@link ManulJdbcInputFormat}. */
     public static class Builder<T> {
         private final JdbcConnectionOptions.JdbcConnectionOptionsBuilder connOptionsBuilder;
         private int fetchSize;

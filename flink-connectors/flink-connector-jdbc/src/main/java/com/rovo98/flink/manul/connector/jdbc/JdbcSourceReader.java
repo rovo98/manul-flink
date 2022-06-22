@@ -1,6 +1,7 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
+
 import org.apache.flink.api.connector.source.SourceReaderContext;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.connector.base.source.reader.RecordEmitter;
@@ -13,6 +14,12 @@ import org.apache.flink.connector.base.source.reader.synchronization.FutureCompl
 import java.util.Map;
 import java.util.function.Supplier;
 
+/**
+ * Jdbc SourceReader implementation which is responsible for reading records from the {@link
+ * JdbcSourceSplit}s assigned by {@link JdbcSourceSplitEnumerator}.
+ *
+ * @param <T> the type of the record to emit
+ */
 public class JdbcSourceReader<T> extends SourceReaderBase<T, T, JdbcSourceSplit, JdbcSourceSplit> {
 
     public JdbcSourceReader(

@@ -1,6 +1,7 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
+
 import org.apache.flink.core.io.SimpleVersionedSerializer;
 import org.apache.flink.core.memory.DataInputDeserializer;
 import org.apache.flink.core.memory.DataOutputSerializer;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
+/** JdbcEnumeratorCheckpointSerializer. */
 public class JdbcEnumeratorCheckpointSerializer
         implements SimpleVersionedSerializer<Collection<JdbcSourceSplit>> {
     private static final int CURRENT_VERSION = 1;

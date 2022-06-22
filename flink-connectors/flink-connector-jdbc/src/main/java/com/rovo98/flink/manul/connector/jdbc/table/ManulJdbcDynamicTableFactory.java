@@ -20,6 +20,7 @@ package com.rovo98.flink.manul.connector.jdbc.table;
 
 import com.rovo98.flink.manul.connector.jdbc.dialect.JdbcDialectService;
 import com.rovo98.flink.manul.connector.jdbc.internal.options.ManulJdbcReadOptions;
+
 import org.apache.flink.configuration.ConfigOption;
 import org.apache.flink.configuration.ConfigOptions;
 import org.apache.flink.configuration.ReadableConfig;
@@ -45,7 +46,28 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.*;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.DRIVER;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.LOOKUP_CACHE_MAX_ROWS;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.LOOKUP_CACHE_TTL;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.LOOKUP_MAX_RETRIES;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.MAX_RETRY_TIMEOUT;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.PASSWORD;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_AUTO_COMMIT;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_FETCH_SIZE;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_PARTITION_COLUMN;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_PARTITION_COLUMN_STRING_TYPE;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_PARTITION_LOWER_BOUND;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_PARTITION_NUM;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_PARTITION_STRING_COLUMN_VALUES;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_PARTITION_UPPER_BOUND;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SCAN_PUSH_DOWN_CONSTRAINTS;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SINK_BUFFER_FLUSH_INTERVAL;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SINK_BUFFER_FLUSH_MAX_ROWS;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SINK_MAX_RETRIES;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.SINK_PARALLELISM;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.TABLE_NAME;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.URL;
+import static com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcConnectorOptions.USERNAME;
 import static org.apache.flink.util.Preconditions.checkState;
 
 /**
@@ -142,7 +164,9 @@ public class ManulJdbcDynamicTableFactory
                 });
         readableConfig.getOptional(SCAN_FETCH_SIZE).ifPresent(builder::setFetchSize);
         builder.setAutoCommit(readableConfig.get(SCAN_AUTO_COMMIT));
-        readableConfig.getOptional(SCAN_PUSH_DOWN_CONSTRAINTS).ifPresent(builder::setWhereClausePushDownConstraints);
+        readableConfig
+                .getOptional(SCAN_PUSH_DOWN_CONSTRAINTS)
+                .ifPresent(builder::setWhereClausePushDownConstraints);
         return builder.build();
     }
 

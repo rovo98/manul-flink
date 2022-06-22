@@ -1,5 +1,6 @@
 package com.rovo98.flink.manul.connector.jdbc.utils;
 
+/** Token entity which contains all token info. */
 public class Token {
     final TokenType type;
     final String lexeme;

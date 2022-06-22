@@ -1,15 +1,26 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
+
 import org.apache.flink.api.connector.source.SplitEnumerator;
 import org.apache.flink.api.connector.source.SplitEnumeratorContext;
 import org.apache.flink.api.connector.source.SplitsAssignment;
 
 import javax.annotation.Nullable;
-import java.io.IOException;
-import java.util.*;
 
-public class JdbcSplitEnumerator
+import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Queue;
+
+/**
+ * Jdbc source splits enumerator which is responsible for assigning {@link JdbcSourceSplit}s to the
+ * source reader.
+ */
+public class JdbcSourceSplitEnumerator
         implements SplitEnumerator<JdbcSourceSplit, Collection<JdbcSourceSplit>> {
 
     private final SplitEnumeratorContext<JdbcSourceSplit> context;
@@ -18,7 +29,7 @@ public class JdbcSplitEnumerator
 
     private final boolean bounded;
 
-    public JdbcSplitEnumerator(
+    public JdbcSourceSplitEnumerator(
             SplitEnumeratorContext<JdbcSourceSplit> context,
             Collection<JdbcSourceSplit> splits,
             boolean bounded) {

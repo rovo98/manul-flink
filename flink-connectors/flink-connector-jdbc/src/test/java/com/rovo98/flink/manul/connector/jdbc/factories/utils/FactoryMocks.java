@@ -3,7 +3,11 @@ package com.rovo98.flink.manul.connector.jdbc.factories.utils;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.table.api.DataTypes;
 import org.apache.flink.table.api.Schema;
-import org.apache.flink.table.catalog.*;
+import org.apache.flink.table.catalog.CatalogTable;
+import org.apache.flink.table.catalog.Column;
+import org.apache.flink.table.catalog.ObjectIdentifier;
+import org.apache.flink.table.catalog.ResolvedCatalogTable;
+import org.apache.flink.table.catalog.ResolvedSchema;
 import org.apache.flink.table.connector.source.DynamicTableSource;
 import org.apache.flink.table.factories.FactoryUtil;
 import org.apache.flink.table.types.DataType;
@@ -14,7 +18,7 @@ import java.util.Map;
 
 /**
  * Utilities for testing instances usually created by {@link
- * org.apache.flink.table.factories.FactoryUtil}
+ * org.apache.flink.table.factories.FactoryUtil}.
  */
 public class FactoryMocks {
 
@@ -32,8 +36,7 @@ public class FactoryMocks {
             ObjectIdentifier.of("default", "default", "t1");
 
     public static DynamicTableSource createTableSource(
-            ResolvedSchema schema, Map<String, String> options
-    ) {
+            ResolvedSchema schema, Map<String, String> options) {
         return FactoryUtil.createTableSource(
                 null,
                 IDENTIFIER,
@@ -42,10 +45,8 @@ public class FactoryMocks {
                                 Schema.newBuilder().fromResolvedSchema(schema).build(),
                                 "mock source",
                                 Collections.emptyList(),
-                                options
-                        ),
-                        schema
-                ),
+                                options),
+                        schema),
                 new Configuration(),
                 FactoryMocks.class.getClassLoader(),
                 false);

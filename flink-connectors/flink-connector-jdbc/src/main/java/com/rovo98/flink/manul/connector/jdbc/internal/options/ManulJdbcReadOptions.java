@@ -98,9 +98,11 @@ public class ManulJdbcReadOptions implements Serializable {
                     && Objects.equals(partitionLowerBound, options.partitionLowerBound)
                     && Objects.equals(partitionUpperBound, options.partitionUpperBound)
                     && Objects.equals(numPartitions, options.numPartitions)
-                    && Objects.equals(stringPartitionColumnValues, options.stringPartitionColumnValues)
+                    && Objects.equals(
+                            stringPartitionColumnValues, options.stringPartitionColumnValues)
                     && Objects.equals(partitionColumnStringType, options.partitionColumnStringType)
-                    && Objects.equals(whereClausePushDownConstraints, options.whereClausePushDownConstraints)
+                    && Objects.equals(
+                            whereClausePushDownConstraints, options.whereClausePushDownConstraints)
                     && Objects.equals(fetchSize, options.fetchSize)
                     && Objects.equals(autoCommit, options.autoCommit);
         } else {
@@ -108,7 +110,10 @@ public class ManulJdbcReadOptions implements Serializable {
         }
     }
 
-    /** Builder of {@link com.rovo98.flink.manul.connector.jdbc.internal.options.ManulJdbcReadOptions}. */
+    /**
+     * Builder of {@link
+     * com.rovo98.flink.manul.connector.jdbc.internal.options.ManulJdbcReadOptions}.
+     */
     public static class Builder {
         protected String query;
         protected String partitionColumnName;
@@ -156,17 +161,20 @@ public class ManulJdbcReadOptions implements Serializable {
             return this;
         }
 
-        public ManulJdbcReadOptions.Builder setStringPartitionColumnValues(String stringPartitionColumnValues) {
+        public ManulJdbcReadOptions.Builder setStringPartitionColumnValues(
+                String stringPartitionColumnValues) {
             this.stringPartitionColumnValues = stringPartitionColumnValues;
             return this;
         }
 
-        public ManulJdbcReadOptions.Builder setPartitionColumnStringType(boolean partitionColumnStringType) {
+        public ManulJdbcReadOptions.Builder setPartitionColumnStringType(
+                boolean partitionColumnStringType) {
             this.partitionColumnStringType = partitionColumnStringType;
             return this;
         }
 
-        public ManulJdbcReadOptions.Builder setWhereClausePushDownConstraints(String whereClausePushDownConstraints) {
+        public ManulJdbcReadOptions.Builder setWhereClausePushDownConstraints(
+                String whereClausePushDownConstraints) {
             this.whereClausePushDownConstraints = whereClausePushDownConstraints;
             return this;
         }

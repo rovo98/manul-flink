@@ -1,6 +1,7 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.split.JdbcSourceSplit;
+
 import org.apache.flink.core.io.SimpleVersionedSerializer;
 import org.apache.flink.core.memory.DataInputDeserializer;
 import org.apache.flink.core.memory.DataOutputSerializer;
@@ -8,6 +9,7 @@ import org.apache.flink.util.Preconditions;
 
 import java.io.IOException;
 
+/** Serializer for JdbcSourceSplit. */
 public class JdbcSourceSplitSerializer implements SimpleVersionedSerializer<JdbcSourceSplit> {
     private static final int CURRENT_VERSION = 1;
 

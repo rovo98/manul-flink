@@ -1,24 +1,35 @@
 package com.rovo98.flink.manul.connector.jdbc;
 
 import com.rovo98.flink.manul.connector.jdbc.internal.options.ManulJdbcConnectionOptions;
+
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.CloseableIterator;
-import org.junit.Before;
-import org.junit.Test;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.rovo98.flink.manul.connector.jdbc.JdbcTestFixture.*;
+import static com.rovo98.flink.manul.connector.jdbc.JdbcTestFixture.DERBY_EBOOKSHOP_DB;
+import static com.rovo98.flink.manul.connector.jdbc.JdbcTestFixture.INPUT_TABLE;
+import static com.rovo98.flink.manul.connector.jdbc.JdbcTestFixture.INSERT_TEMPLATE;
+import static com.rovo98.flink.manul.connector.jdbc.JdbcTestFixture.TEST_DATA;
+import static com.rovo98.flink.manul.connector.jdbc.JdbcTestFixture.TestEntry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.Before;
+import org.junit.Test;
+
+/** JdbcSourceITTest. */
 public class JdbcSourceITTest extends JdbcTestBase {
 
     @Before
