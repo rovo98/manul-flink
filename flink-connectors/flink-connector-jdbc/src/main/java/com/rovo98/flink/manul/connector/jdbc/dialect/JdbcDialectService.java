@@ -100,17 +100,7 @@ public class JdbcDialectService {
                     .forEachRemaining(
                             jdbcDialect -> {
                                 String key = jdbcDialect.getClass().getSimpleName();
-                                if (result.containsKey(key)) {
-                                    // Load adopted jdbc dialects only.
-                                    if (jdbcDialect
-                                            .getClass()
-                                            .getName()
-                                            .startsWith("com.rovo98.flink.manul")) {
-                                        result.put(key, jdbcDialect);
-                                    }
-                                } else {
-                                    result.put(key, jdbcDialect);
-                                }
+                                result.put(key, jdbcDialect);
                             });
             return new LinkedList<>(result.values());
         } catch (ServiceConfigurationError e) {
