@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rovo98.flink.manul</groupId>
-    <artifactId>flink-manul-parent</artifactId>
+    <groupId>com.rovo98.manul.flink</groupId>
+    <artifactId>manul-flink-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
 
-    <name>Flink Manul :</name>
+    <name>Manul Flink :</name>
     <packaging>pom</packaging>
     <inceptionYear>2021</inceptionYear>
 

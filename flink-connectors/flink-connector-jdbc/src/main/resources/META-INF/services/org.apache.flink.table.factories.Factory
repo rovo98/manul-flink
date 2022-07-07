@@ -1,1 +1,1 @@
-com.rovo98.flink.manul.connector.jdbc.table.ManulJdbcDynamicTableFactory
+com.rovo98.manul.flink.connector.jdbc.table.ManulJdbcDynamicTableFactory
