@@ -239,10 +239,6 @@ public class ManulJdbcDynamicTableFactory
     }
 
     private void validateConfigOptions(ReadableConfig config) {
-        String jdbcUrl = config.get(URL);
-        final Optional<JdbcDialect> dialect = JdbcDialects.get(jdbcUrl);
-        checkState(dialect.isPresent(), "Cannot handle such jdbc url: " + jdbcUrl);
-
         checkAllOrNone(config, new ConfigOption[] {USERNAME, PASSWORD});
 
         if (config.getOptional(SCAN_PARTITION_COLUMN).isPresent()) {
