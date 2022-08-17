@@ -20,13 +20,10 @@ package com.rovo98.manul.flink.connector.jdbc.table;
 
 import com.rovo98.manul.flink.connector.jdbc.dialect.JdbcDialectService;
 import com.rovo98.manul.flink.connector.jdbc.internal.options.ManulJdbcReadOptions;
-
 import org.apache.flink.configuration.ConfigOption;
 import org.apache.flink.configuration.ConfigOptions;
 import org.apache.flink.configuration.ReadableConfig;
 import org.apache.flink.connector.jdbc.JdbcExecutionOptions;
-import org.apache.flink.connector.jdbc.dialect.JdbcDialect;
-import org.apache.flink.connector.jdbc.dialect.JdbcDialects;
 import org.apache.flink.connector.jdbc.internal.options.JdbcConnectorOptions;
 import org.apache.flink.connector.jdbc.internal.options.JdbcDmlOptions;
 import org.apache.flink.connector.jdbc.internal.options.JdbcLookupOptions;
@@ -68,7 +65,6 @@ import static com.rovo98.manul.flink.connector.jdbc.table.ManulJdbcConnectorOpti
 import static com.rovo98.manul.flink.connector.jdbc.table.ManulJdbcConnectorOptions.TABLE_NAME;
 import static com.rovo98.manul.flink.connector.jdbc.table.ManulJdbcConnectorOptions.URL;
 import static com.rovo98.manul.flink.connector.jdbc.table.ManulJdbcConnectorOptions.USERNAME;
-import static org.apache.flink.util.Preconditions.checkState;
 
 /**
  * Factory for creating configured instances of {@link JdbcDynamicTableSource} and {@link
@@ -239,10 +235,6 @@ public class ManulJdbcDynamicTableFactory
     }
 
     private void validateConfigOptions(ReadableConfig config) {
-        String jdbcUrl = config.get(URL);
-        final Optional<JdbcDialect> dialect = JdbcDialects.get(jdbcUrl);
-        checkState(dialect.isPresent(), "Cannot handle such jdbc url: " + jdbcUrl);
-
         checkAllOrNone(config, new ConfigOption[] {USERNAME, PASSWORD});
 
         if (config.getOptional(SCAN_PARTITION_COLUMN).isPresent()) {
